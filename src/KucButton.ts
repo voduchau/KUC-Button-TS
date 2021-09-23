@@ -77,6 +77,9 @@ export class KucButton extends LitElement {
   onclick = () => {};
 
   override render() {
+    const isValidType = this.typeOfButtons.indexOf(this.type) != -1;
+    this.type = isValidType ? this.type : "success";
+
     return html`
       <button
         class="kuc-button kuc-btn-${this.type} ${this.className}"
