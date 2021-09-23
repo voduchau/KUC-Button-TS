@@ -1,0 +1,20 @@
+{
+  "name": "kuc-button-ts-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "lit-element": "^3.0.0",
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {
+    "@web/dev-server": "^0.1.23",
+    "@webcomponents/webcomponentsjs": "^2.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "web-dev-server --node-resolve --open"
+  },
+  "author": "",
+  "license": "ISC"
+}
