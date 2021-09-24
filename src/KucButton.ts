@@ -1,6 +1,11 @@
 import { LitElement, html, css } from "lit-element";
 import { customElement, property } from "lit-element/decorators.js";
 
+enum typeOfButtons {
+  success,
+  danger,
+  warning,
+}
 @customElement("kuc-button")
 export class KucButton extends LitElement {
   static override styles = css`
@@ -55,31 +60,25 @@ export class KucButton extends LitElement {
     }
   `;
 
-  @property({ type: String })
-  className = "";
+  @property({ type: String }) className = "";
 
-  @property({ type: String })
-  id = "";
+  @property({ type: String }) id = "";
 
-  @property({ type: String })
-  text = "";
+  @property({ type: String }) text = "";
 
-  @property({ type: String })
-  type = "success";
+  @property({ type: String }) type = "success";
 
-  @property({ type: Boolean })
-  disabled = false;
+  @property({ type: Boolean }) disabled = false;
 
-  @property({ type: Array })
-  typeOfButtons = ["success", "warning", "danger"];
+  @property({ type: Function }) onclick = () => {};
 
-  @property({ type: Function })
-  onclick = () => {};
+  updated(changedProperties) {
+    if (changedProperties.has("type")) {
+      this.type = this.getValidTypeButton(this.type);
+    }
+  }
 
   override render() {
-    const isValidType = this.typeOfButtons.indexOf(this.type) != -1;
-    this.type = isValidType ? this.type : "success";
-
     return html`
       <button
         class="kuc-button kuc-btn-${this.type} ${this.className}"
@@ -95,5 +94,12 @@ export class KucButton extends LitElement {
 
   private clickHandler() {
     this.onclick;
+  }
+
+  private getValidTypeButton(type) {
+    const isValidType = Object.values(typeOfButtons).includes(
+      typeOfButtons[type]
+    );
+    return isValidType ? type : "success";
   }
 }
