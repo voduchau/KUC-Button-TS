@@ -19,39 +19,39 @@ export class KucButton extends LitElement {
         border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
       cursor: pointer;
     }
-    .kuc-button:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
+    .kuc-btn-success {
+      color: #ffffff;
+      background-color: #28a745;
+      border-color: #28a745;
     }
     .kuc-btn-warning {
       color: #212529;
       background-color: #ffc107;
       border-color: #ffc107;
     }
-    .kuc-btn-warning:hover:enabled {
-      color: #ffffff;
-      background-color: #ebb207;
-      border-color: #ebb207;
-    }
     .kuc-btn-danger {
-      color: #fff;
+      color: #ffffff;
       background-color: #dc3545;
       border-color: #dc3545;
     }
-    .kuc-btn-danger:hover:enabled {
-      color: #ffffff;
-      background-color: #c7303e;
-      border-color: #c7303e;
-    }
-    .kuc-btn-success {
-      color: #ffffff;
-      background-color: #28a745;
-      border-color: #28a745;
+    .kuc-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
     }
     .kuc-btn-success:hover:enabled {
       color: #ffffff;
       background-color: #25993f;
       border-color: #25993f;
+    }
+    .kuc-btn-warning:hover:enabled {
+      color: #212529;
+      background-color: #ebb207;
+      border-color: #ebb207;
+    }
+    .kuc-btn-danger:hover:enabled {
+      color: #ffffff;
+      background-color: #c7303e;
+      border-color: #c7303e;
     }
   `;
 
@@ -95,11 +95,5 @@ export class KucButton extends LitElement {
 
   private clickHandler() {
     this.onclick;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    "my-element": KucButton;
   }
 }
