@@ -76,6 +76,9 @@ export class KucButton extends LitElement {
     if (changedProperties.has("type")) {
       this.type = this.getValidTypeButton(this.type);
     }
+    if (changedProperties.has("id") && this.id) {
+      this.shadowRoot?.querySelector("button")?.setAttribute("id", this.id);
+    }
   }
 
   override render() {
@@ -83,7 +86,6 @@ export class KucButton extends LitElement {
       <button
         class="kuc-button kuc-btn-${this.type} ${this.className}"
         @click="${this.clickHandler}"
-        ?id="${this.id}"
         type="button"
         ?disabled="${this.disabled}"
       >
@@ -93,7 +95,7 @@ export class KucButton extends LitElement {
   }
 
   private clickHandler() {
-    this.onclick;
+    this.onclick();
   }
 
   private getValidTypeButton(type) {
