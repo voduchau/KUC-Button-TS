@@ -3,12 +3,11 @@ import { fixture, expect } from "@open-wc/testing";
 import { html } from "lit-element";
 
 describe("Kuc button class", () => {
-  it("should add new when property className passed in", async () => {
+  it("should add new when passed in className attribute", async () => {
     const kucButton = await fixture(
       html`<kuc-button className="my-class"></kuc-button>`
     );
-    const buttonElement = kucButton.shadowRoot.querySelector("button");
 
-    expect(buttonElement).to.have.class("my-class");
+    expect(kucButton.className).to.equal("my-class");
   });
 });
