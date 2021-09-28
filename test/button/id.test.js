@@ -3,7 +3,7 @@ import { fixture, expect } from "@open-wc/testing";
 import { html } from "lit-element";
 
 describe("Kuc button id", () => {
-  it("should setted when property id passed in", async () => {
+  it("should setted when passed in id attribute", async () => {
     const kucButton = await fixture(html`<kuc-button id="my-id"></kuc-button>`);
     const buttonElement = kucButton.shadowRoot.querySelector("button");
 

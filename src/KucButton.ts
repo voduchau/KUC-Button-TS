@@ -8,6 +8,47 @@ enum typeOfButtons {
 }
 @customElement("kuc-button")
 export class KucButton extends LitElement {
+  @property({ type: String }) className = "";
+
+  @property({ type: String }) id = "";
+
+  @property({ type: String }) text = "";
+
+  @property({ type: String }) type = "success";
+
+  @property({ type: Boolean }) disabled = false;
+
+  updated(changedProperties) {
+    if (changedProperties.has("type")) {
+      this.type = this.getValidTypeButton(this.type);
+    }
+    if (changedProperties.has("id") && this.id) {
+      this.shadowRoot?.querySelector("button")?.setAttribute("id", this.id);
+    }
+  }
+
+  override render() {
+    return html`
+      <button
+        class="kuc-button kuc-btn-${this.type} ${this.className}"
+        @click="${this.clickHandler}"
+        type="button"
+        ?disabled="${this.disabled}"
+      >
+        ${this.text}
+      </button>
+    `;
+  }
+
+  private clickHandler() {}
+
+  private getValidTypeButton(type) {
+    const isValidType = Object.values(typeOfButtons).includes(
+      typeOfButtons[type]
+    );
+    return isValidType ? type : "success";
+  }
+
   static override styles = css`
     .kuc-button {
       display: inline-block;
@@ -59,49 +100,4 @@ export class KucButton extends LitElement {
       border-color: #c7303e;
     }
   `;
-
-  @property({ type: String }) className = "";
-
-  @property({ type: String }) id = "";
-
-  @property({ type: String }) text = "";
-
-  @property({ type: String }) type = "success";
-
-  @property({ type: Boolean }) disabled = false;
-
-  @property({ type: Function }) onclick = () => {};
-
-  updated(changedProperties) {
-    if (changedProperties.has("type")) {
-      this.type = this.getValidTypeButton(this.type);
-    }
-    if (changedProperties.has("id") && this.id) {
-      this.shadowRoot?.querySelector("button")?.setAttribute("id", this.id);
-    }
-  }
-
-  override render() {
-    return html`
-      <button
-        class="kuc-button kuc-btn-${this.type} ${this.className}"
-        @click="${this.clickHandler}"
-        type="button"
-        ?disabled="${this.disabled}"
-      >
-        ${this.text}
-      </button>
-    `;
-  }
-
-  private clickHandler() {
-    this.onclick();
-  }
-
-  private getValidTypeButton(type) {
-    const isValidType = Object.values(typeOfButtons).includes(
-      typeOfButtons[type]
-    );
-    return isValidType ? type : "success";
-  }
 }
