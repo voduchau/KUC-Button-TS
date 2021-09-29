@@ -7,7 +7,15 @@ describe("Kuc button class", () => {
     const kucButton = await fixture(
       html`<kuc-button className="my-class"></kuc-button>`
     );
+    const buttonElement = kucButton.shadowRoot.querySelector("button");
 
-    expect(kucButton.className).to.equal("my-class");
+    expect(buttonElement.className).to.equal("my-class");
+  });
+
+  it("should be have kuc-button when not passed in className attribute", async () => {
+    const kucButton = await fixture(html`<kuc-button></kuc-button>`);
+    const buttonElement = kucButton.shadowRoot.querySelector("button");
+
+    expect(buttonElement.className).to.equal("kuc-button");
   });
 });

@@ -40,7 +40,11 @@ export class KucButton extends LitElement {
     `;
   }
 
-  private clickHandler() {}
+  private clickHandler(e: MouseEvent) {
+    e.stopPropagation();
+    const event = new CustomEvent("click", { bubbles: true, composed: true });
+    this.dispatchEvent(event);
+  }
 
   private getValidTypeButton(type) {
     const isValidType = Object.values(typeOfButtons).includes(

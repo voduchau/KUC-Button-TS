@@ -19,12 +19,30 @@ describe("Kuc button type", () => {
     expect(buttonElement.type).to.equal("success");
   });
 
-  it("should overided when passed in type attribute valid", async () => {
+  it("should be warning when passed in type warning", async () => {
     const kucButton = await fixture(
       html`<kuc-button type="warning"></kuc-button>`
     );
     const buttonElement = kucButton.shadowRoot.querySelector("button");
 
     expect(buttonElement.type).to.equal("warning");
+  });
+
+  it("should be danger when passed in type danger", async () => {
+    const kucButton = await fixture(
+      html`<kuc-button type="danger"></kuc-button>`
+    );
+    const buttonElement = kucButton.shadowRoot.querySelector("button");
+
+    expect(buttonElement.type).to.equal("danger");
+  });
+
+  it("should be success when passed in type success", async () => {
+    const kucButton = await fixture(
+      html`<kuc-button type="success"></kuc-button>`
+    );
+    const buttonElement = kucButton.shadowRoot.querySelector("button");
+
+    expect(buttonElement.type).to.equal("success");
   });
 });

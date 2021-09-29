@@ -7,27 +7,25 @@ describe("Kuc button onclick", () => {
     const kucButton = await fixture(html`<kuc-button></kuc-button>`);
     const buttonElement = kucButton.shadowRoot.querySelector("button");
 
-    let count = 0;
-    buttonElement.onclick = () => {
-      count = 1;
-    };
+    kucButton.addEventListener("click", function (e) {
+      buttonElement.innerText = e.type;
+    });
 
     buttonElement.click();
 
-    expect(count).to.equal(1);
+    expect(buttonElement.innerText).to.equal("click");
   });
 
   it("should not be triggered when passed in disabled attribute", async () => {
     const kucButton = await fixture(html`<kuc-button disabled></kuc-button>`);
     const buttonElement = kucButton.shadowRoot.querySelector("button");
 
-    let count = 0;
-    buttonElement.onclick = () => {
-      count = 1;
-    };
+    kucButton.addEventListener("click", function (e) {
+      buttonElement.innerText = e.type;
+    });
 
     buttonElement.click();
 
-    expect(count).to.equal(0);
+    expect(buttonElement.innerText).to.equal("");
   });
 });
